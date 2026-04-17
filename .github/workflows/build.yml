@@ -20,6 +20,13 @@ jobs:
         echo "$HOME/theos/bin" >> $GITHUB_PATH
         echo "THEOS=$HOME/theos" >> $GITHUB_ENV
     
+    - name: Download iPhone SDK
+      run: |
+        mkdir -p $HOME/theos/sdks
+        wget https://github.com/theos/sdks/raw/master/iPhoneOS14.5.sdk.tar.xz
+        tar -xvf iPhoneOS14.5.sdk.tar.xz -C $HOME/theos/sdks
+        rm iPhoneOS14.5.sdk.tar.xz
+    
     - name: Build Tweak
       run: |
         make clean
